@@ -1,0 +1,38 @@
+# Smart Tamper Detection System
+
+## Overview
+This project detects tampering in weighing and measuring instruments using IoT concepts.
+
+## Features
+- Real-time tamper detection
+- Data logging
+- API-based monitoring
+- Simple dashboard integration
+
+## Tech Stack
+- Node.js
+- Express.js
+- REST API
+
+## API Endpoints
+
+### GET /
+Check server status
+
+### POST /tamper
+Send tamper data
+
+Example:
+{
+  "deviceId": "Device1",
+  "tamper": true,
+  "location": "Pune"
+}
+
+### GET /tamper
+Get all records
+
+## Future Scope
+- IoT sensor integration
+- Blockchain logging
+- AI-based anomaly detection
