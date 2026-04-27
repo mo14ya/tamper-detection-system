@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tamper Dashboard</title>
+</head>
+<body>
+  <h1>Tamper Detection Dashboard</h1>
+
+  <button onclick="sendTamper()">Simulate Tamper</button>
+
+  <h2>Logs:</h2>
+  <ul id="logs"></ul>
+
+  <script>
+    const api = "http://localhost:3000/tamper";
+
+    function sendTamper() {
+      fetch(api, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          deviceId: "Device1",
+          tamper: true,
+          location: "Pune"
+        })
+      }).then(() => loadData());
+    }
+
+    function loadData() {
+      fetch(api)
+        .then(res => res.json())
+        .then(data => {
+          const logs = document.getElementById("logs");
+          logs.innerHTML = "";
+          data.forEach(d => {
+            const li = document.createElement("li");
+            li.innerText = `${d.deviceId} | ${d.tamper} | ${d.location}`;
+            logs.appendChild(li);
+          });
+        });
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
